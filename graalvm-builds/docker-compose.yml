@@ -1,7 +1,7 @@
 version: '2.4'
 services:
   build-ni:
-    image: davidfrickert/dockerskeleton-slim:latest
-    container_name: dockerskeleton-test
+    image: native-image-builder
+    container_name: native-image-builder
     volumes:
-      - ../FaaS-GraalVM/target:/stuff
+      - ../FunctionRunner:/opt/builds/project
