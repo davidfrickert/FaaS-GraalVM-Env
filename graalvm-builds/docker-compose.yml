@@ -1,0 +1,7 @@
+version: '2.4'
+services:
+  build-ni:
+    image: davidfrickert/dockerskeleton-slim:latest
+    container_name: dockerskeleton-test
+    volumes:
+      - ../FaaS-GraalVM/target:/stuff

@@ -1,0 +1,9 @@
+[submodule "FunctionRunner"]
+	path = FunctionRunner
+	url = git@github.com:davidfrickert/FunctionRunner.git
+[submodule "openwhisk-devtools"]
+	path = openwhisk-devtools
+	url = git@github.com:davidfrickert/openwhisk-devtools.git
+[submodule "Photons-Original"]
+	path = Photons-Original
+	url = https://github.com/rodrigo-bruno/openwhisk-runtime-java/tree/devel
