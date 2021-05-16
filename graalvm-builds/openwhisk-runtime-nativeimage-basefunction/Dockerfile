@@ -1,7 +1,7 @@
 FROM debian:stable-slim
 
 RUN apt-get update \
-  && DEBIAN_FRONTEND=noninteractive apt-get install -y bash perl jq git curl wget openssl ca-certificates sed openssh-client \
+  && DEBIAN_FRONTEND=noninteractive apt-get install -y bash perl jq git curl wget openssl ca-certificates sed openssh-client procps \
   && update-ca-certificates \
   && rm -rf /var/lib/apt/lists/*
 
