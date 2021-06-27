@@ -7,7 +7,13 @@ Repository of the Master's Thesis - "Photons@Graal - Enabling Efficient Function
     - some scripts to benchmark functions on the environment
     
 - FunctionRunner    
-    - Main code of the functio 
+    - Main code of the function runner library
+    - Runs functions inside Isolates, to allow concurrent function invocation with strict data isolation
+    - Intended to be used with some sort of HTTP wrapper on top
+
+- openwhisk-faas-graalvm-base
+    - Simple openwhisk-complient base structure to run functions with FunctionRunner
+    - Intended to be used as a library to be bundled with the function to be run, since it needs to be compiled AOT
 
 - Base-Function
   - Example function to run
