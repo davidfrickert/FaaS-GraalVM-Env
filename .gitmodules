@@ -6,7 +6,7 @@
 	url = git@github.com:davidfrickert/openwhisk-devtools.git
 [submodule "Photons-Original"]
 	path = Photons-Original
-	url = https://github.com/rodrigo-bruno/openwhisk-runtime-java.git
+	url = https://github.com/davidfrickert/openwhisk-runtime-java.git
 	branch = devel
 [submodule "ow-docker-slim"]
 	path = graalvm-builds/openwhisk-runtime-docker-slim
