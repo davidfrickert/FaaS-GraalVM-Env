@@ -11,3 +11,6 @@
 [submodule "ow-docker-slim"]
 	path = graalvm-builds/openwhisk-runtime-docker-slim
 	url = git@github.com:davidfrickert/openwhisk-runtime-docker-slim.git
+[submodule "openwhisk-faas-graalvm-base"]
+	path = openwhisk-faas-graalvm-base
+	url = git@github.com:davidfrickert/openwhisk-faas-graalvm-base
