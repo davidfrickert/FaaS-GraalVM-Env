@@ -2,6 +2,6 @@ version: '2.4'
 services:
   build-ni:
     image: native-image-builder
-    container_name: native-image-builder
+    container_name: native-image-builder-${FUNCTION}
     volumes:
-      - ${FUNCTION}:/opt/builds/project
+      - ${DIR}:/opt/builds/project
