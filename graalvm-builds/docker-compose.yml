@@ -4,4 +4,4 @@ services:
     image: native-image-builder
     container_name: native-image-builder
     volumes:
-      - ../FunctionRunner:/opt/builds/project
+      - ${FUNCTION}:/opt/builds/project
