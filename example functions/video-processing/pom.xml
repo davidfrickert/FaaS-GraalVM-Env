@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <artifactId>graal-function-parent</artifactId>
+        <groupId>pt.ulisboa.ist</groupId>
+        <version>0.0.1</version>
+    </parent>
+
+    <groupId>org.example</groupId>
+    <artifactId>faas-graalvm-video</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <graalvm.version>21.1.0</graalvm.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>pt.ulisboa.ist</groupId>
+            <artifactId>openwhisk-faas-graalvm-base</artifactId>
+            <version>0.0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>pt.ulisboa.ist</groupId>
+            <version>0.0.1</version>
+            <artifactId>faas-graalvm-video</artifactId>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.graalvm.nativeimage</groupId>
+                <artifactId>native-image-maven-plugin</artifactId>
+                <version>${graalvm.version}</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>native-image</goal>
+                        </goals>
+                        <phase>install</phase>
+                    </execution>
+                </executions>
+                <configuration>
+                    <skip>false</skip>
+                    <imageName>app</imageName>
+                    <mainClass>pt.ulisboa.ist.Main</mainClass>
+                    <buildArgs>
+                        <!-- Forces a failure if NI is not built -->
+                        --no-fallback
+                        <!-- Enable HTTP + HTTPS -->
+                        --enable-https
+                        --enable-http
+                        <!-- Configs -->
+                        -H:ReflectionConfigurationFiles=classes/reflect-config.json
+                        -H:SerializationConfigurationFiles=classes/serialization-config.json
+                        -H:ResourceConfigurationFiles=classes/resource-config.json
+                        -H:JNIConfigurationFiles=classes/jni-config.json
+                        <!-- ??? - Can't remember why (or if) this is needed -->
+                        -H:+ReportExceptionStackTraces
+                        <!-- This option makes the build not fail if it can't find some classes in reflection.json-->
+                        -H:+AllowIncompleteClasspath
+                        <!-- This option is required for functions that use OkHttp lib
+                             If not set it will crash with java.nio.charset.UnsupportedCharsetException: UTF-32BE -->
+                        -H:+AddAllCharsets
+                        --initialize-at-build-time=sun.instrument
+
+                        <!-- GC data
+                        -R:+PrintGCSummary
+                        -R:+PrintGC
+                        -R:+PrintGCTimeStamps
+                        -R:+VerboseGC
+                        -->
+                    </buildArgs>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-shade-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.0.0</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <mainClass>pt.ulisboa.ist.Main</mainClass>
+                </configuration>
+            </plugin>
+        </plugins>
+
+    </build>
+
+    <repositories>
+        <repository>
+            <id>rpi</id>
+            <url>http://10.147.18.110:8083/releases</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>rpi-snapshots</id>
+            <url>http://10.147.18.110:8083/snapshots</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
+</project>

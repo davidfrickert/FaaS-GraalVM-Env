@@ -1,0 +1,11 @@
+{
+  "resources":{
+    "includes":[
+      {"pattern":"\\Qconfig.properties\\E"},
+      {"pattern":"\\Qlogback.xml\\E"},
+      {"pattern":"\\Qorg/apache/http/client/version.properties\\E"},
+      {"pattern":"\\Qorg/slf4j/impl/StaticLoggerBinder.class\\E"},
+      {"pattern":"\\Qorg/sonatype/plexus/components/cipher/DefaultPlexusCipher.class\\E"},
+      {"pattern":"\\Qsimplelogger.properties\\E"}
+    ]}
+}
