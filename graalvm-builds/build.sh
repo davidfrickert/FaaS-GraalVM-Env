@@ -4,12 +4,19 @@ if [ -z ${2+x} ]; then
    echo "Script args: PATH_OF_FUNCTION FUNCTION_TAG [optional OUTPUT_IMAGE]"
 fi
 
-DOCKER_IMAGE="${3:-'openwhisk-runtime-nativeimage-basefunction'}"
+DOCKER_IMAGE="${3:-openwhisk-runtime-nativeimage-basefunction}"
 
 cp -r mvnw/mvnw "$1"
 cp -r mvnw/.mvn "$1"
-FUNCTION="$1" docker-compose up
-cp "$1/target/app" openwhisk-runtime-nativeimage-basefunction/
-cd openwhisk-runtime-nativeimage-basefunction
+
+DIR="$1" FUNCTION="$2" docker-compose up
+
+mkdir -p "docker-image-builds/openwhisk-runtime-nativeimage-basefunction-$2"
+
+cp "$1/target/app" "docker-image-builds/openwhisk-runtime-nativeimage-basefunction-$2"
+cp openwhisk-runtime-nativeimage-basefunction/Dockerfile "docker-image-builds/$2"
+
+cd "docker-image-builds/openwhisk-runtime-nativeimage-basefunction-$2"
 docker build . -t "davidfrickert/$DOCKER_IMAGE:$2"
 docker push "davidfrickert/$DOCKER_IMAGE:$2"
+
