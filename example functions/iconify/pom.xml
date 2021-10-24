@@ -29,7 +29,7 @@
         <dependency>
             <groupId>pt.ulisboa.ist</groupId>
             <artifactId>faas-graalvm-iconify</artifactId>
-            <version>0.0.1</version>
+            <version>0.0.1-SNAPSHOT</version>
         </dependency>
     </dependencies>
 
