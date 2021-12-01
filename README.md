@@ -15,9 +15,6 @@ Repository of the Master's Thesis - "Photons@Graal - Enabling Efficient Function
     - Simple openwhisk-complient base structure to run functions with FunctionRunner
     - Intended to be used as a library to be bundled with the function to be run, since it needs to be compiled AOT
 
-- Base-Function
-  - Example function to run
-  
 - graalvm-builds
   - Contains base Dockerfile of a Photons@Graal-enabled function
   - Script to build a Photons@Graal-enabled function
