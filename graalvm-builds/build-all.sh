@@ -2,3 +2,4 @@
 ./build.sh ../example\ functions/filehashing filehashing
 ./build.sh ../example\ functions/rest-api rest-api
 ./build.sh ../example\ functions/video-processing video
+./build.sh ../example\ functions/iconify iconify
