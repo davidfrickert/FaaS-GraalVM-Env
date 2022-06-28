@@ -12,7 +12,7 @@ Repository of the Master's Thesis - "Photons@Graal - Enabling Efficient Function
     - Intended to be used with some sort of HTTP wrapper on top
 
 - openwhisk-faas-graalvm-base
-    - Simple openwhisk-complient base structure to run functions with FunctionRunner
+    - Simple openwhisk-compliant base structure to run functions with FunctionRunner
     - Intended to be used as a library to be bundled with the function to be run, since it needs to be compiled AOT
 
 - graalvm-builds
